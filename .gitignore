@@ -1,0 +1,12 @@
+# log
+log
+
+# project
+project/app/*
+project/html/*
+
+# mac DS_Store
+.DS_Store
+*/.DS_Store
+*/*/.DS_Store
+*/*/*/.DS_Store
