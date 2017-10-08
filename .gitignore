@@ -1,6 +1,9 @@
 # log
 log
 
+# data
+data
+
 # project
 project/app/*
 project/html/*
