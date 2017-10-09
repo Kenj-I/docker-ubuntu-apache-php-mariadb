@@ -3,13 +3,13 @@
 ## git clone
 
 ```shell
-$ git clone git@github.com:Kenj-I/docker-ubuntu-php-apache-mariadb.git
+$ git clone git@github.com:Kenj-I/docker-ubuntu-apache-php-mariadb.git
 ```
 
 ## init
 
 ```shell
-$ cd docker-ubuntu-php-apache-mariadb-development
+$ cd docker-ubuntu-apache-php-mariadb-development
 $ sh init.sh
 ```
 
@@ -18,7 +18,7 @@ $ sh init.sh
 UP
 
 ```shell
-$ cd docker-ubuntu-php-apache-mariadb-development/docker
+$ cd docker-ubuntu-apache-php-mariadb-development/docker
 $ docker-compose build
 $ docker-compose start
 ```
