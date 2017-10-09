@@ -5,8 +5,7 @@ log
 data
 
 # project
-project/app/*
-project/html/*
+project
 
 # mac DS_Store
 .DS_Store
