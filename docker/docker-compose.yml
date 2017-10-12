@@ -23,13 +23,12 @@ services:
     container_name: php_database
 
   web:
-    build: ./php71-apache
-#     build: ./php56-apache
+    build: ./php-apache
     ports:
       - "8080:80"
     volumes:
       - ../project:/var/www
-      - ./php71-apache/php.ini:/usr/local/etc/php/conf.d/php.ini
+      - ./php-apache/php.ini:/usr/local/etc/php/conf.d/php.ini
       - ../log/error.log:/var/log/apache2/localhost_error.log
       - ../log/access.log:/var/log/apache2/localhost_access.log
     links:
