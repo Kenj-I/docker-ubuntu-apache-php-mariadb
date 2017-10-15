@@ -22,7 +22,7 @@ services:
       - ./data:/var/lib/mysql
 
   webserver:
-    build: ubuntu
+    build: build
     image: ubuntu_server:apache_php_71_dev
     ports:
       - "8080:80"
