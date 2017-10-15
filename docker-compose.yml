@@ -19,18 +19,18 @@ services:
     volumes:
       #if you insert init data
       #- ../app/initial.sql:/docker-entrypoint-initdb.d/initial.sql
-      - ../data:/var/lib/mysql
-    container_name: php_database
+      - ./data:/var/lib/mysql
 
-  web:
-    build: ./php-apache
+  webserver:
+    build: ubuntu
+    image: ubuntu_server:apache_php_71_dev
     ports:
       - "8080:80"
     volumes:
-      - ../project:/var/www
-      - ./php-apache/php.ini:/usr/local/etc/php/conf.d/php.ini
-      - ../log/error.log:/var/log/apache2/localhost_error.log
-      - ../log/access.log:/var/log/apache2/localhost_access.log
+      - ./project:/var/www
+      - ./log/error.log:/var/log/apache2/localhost_error.log
+      - ./log/access.log:/var/log/apache2/localhost_access.log
+      - ./build/php.ini:/usr/local/etc/php/conf.d/php.ini
     links:
       - database
     environment:
@@ -38,5 +38,4 @@ services:
       DATABASE_NAME: project
       DATABASE_USER: development
       DATABASE_PASSWORD: development
-    container_name: php_web
     #command: /usr/sbin/apache2 -D FOREGROUND
