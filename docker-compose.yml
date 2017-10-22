@@ -1,11 +1,6 @@
 version: '3'
 services:
 
-  # data:
-  #   image: busybox
-  #   volumes:
-  #     - ../mysql:/var/lib/mysql
-
   database:
     image: mariadb
     environment:

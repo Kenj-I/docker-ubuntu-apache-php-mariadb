@@ -40,8 +40,10 @@ RUN apt-get update && apt-get install -y \
     && docker-php-ext-install -j$(nproc) gd
 
 RUN apt-get update \
-	&& docker-php-ext-install mbstring pdo pdo_mysql mysqli bcmath posix
+	&& docker-php-ext-install mbstring pdo pdo_mysql mysqli bcmath posix bcmath posix zip
 
+# mod_rewrite on
+RUN a2enmod rewrite
 
 # Expose apache.
 EXPOSE 80
