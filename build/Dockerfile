@@ -42,6 +42,8 @@ RUN apt-get update && apt-get install -y \
 RUN apt-get update \
 	&& docker-php-ext-install mbstring pdo pdo_mysql mysqli bcmath posix bcmath posix zip
 
+RUN apt-get update && apt-get install -y sendmail
+
 # mod_rewrite on
 RUN a2enmod rewrite
 
