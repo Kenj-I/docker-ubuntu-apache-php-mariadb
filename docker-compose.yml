@@ -1,36 +1,39 @@
-version: '3'
+version: '3.2'
 services:
 
   database:
-    image: mariadb
-    environment:
-      MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: project
-      MYSQL_USER: development
-      MYSQL_PASSWORD: development
+    image: mariadb:latest
+    env_file: ./build/envfile
     command: mysqld --character-set-server=utf8 --collation-server=utf8_unicode_ci
     ports:
-      - "13306:3306"
+        - "$HOST_DB_PORT:3306"
     volumes:
       #if you insert init data
       #- ../app/initial.sql:/docker-entrypoint-initdb.d/initial.sql
       - ./data:/var/lib/mysql
+    networks:
+        - app
 
   webserver:
     build: build
     image: ubuntu_server:apache_php_71_dev
-    ports:
-      - "8080:80"
+    # ports:
+    #   - "8080:80"
     volumes:
       - ./project:/var/www
-      - ./log/error.log:/var/log/apache2/localhost_error.log
-      - ./log/access.log:/var/log/apache2/localhost_access.log
       - ./build/php.ini:/usr/local/etc/php/conf.d/php.ini
+      # - ./log/error.log:/var/log/apache2/localhost_error.log
+      # - ./log/access.log:/var/log/apache2/localhost_access.log
     links:
       - database
     environment:
-      DATABASE_HOST: database
-      DATABASE_NAME: project
-      DATABASE_USER: development
-      DATABASE_PASSWORD: development
+        - VIRTUAL_HOST=$VIRTUAL_HOST
+    networks:
+       - external_nginx_proxy
+       - app
     #command: /usr/sbin/apache2 -D FOREGROUND
+networks:
+  app:
+  external_nginx_proxy:
+    external:
+        name: proxy_net

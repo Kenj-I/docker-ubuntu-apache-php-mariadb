@@ -9,3 +9,6 @@ mkdir data
 mkdir log
 touch log/access.log
 touch log/error.log
+
+cp ./build/envfile.sample ./build/envfile
+cp ./.env.sample ./.env
